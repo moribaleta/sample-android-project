@@ -18,6 +18,7 @@ public class ListActivity extends AppCompatActivity {
     ArrayList<String>arrayListStr = new ArrayList<>();
 
     ListView listView;
+
     Context context;
 
     @Override

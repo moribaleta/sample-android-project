@@ -19,6 +19,7 @@ public class FormActivity extends AppCompatActivity {
     EditText editPassword;
     Button btnSave;
 
+    //location strign array
     String arrStrLocation[] = {
             "Manila","Makati","Marikina","Quezon City"
             , "Pasig","Muntinlupa","Pateros","Caloocan","Malabon","Valenzuela",
@@ -30,7 +31,7 @@ public class FormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
         context = getBaseContext();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // back button on action bar
 
         initLayout();
         initData();
@@ -48,17 +49,19 @@ public class FormActivity extends AppCompatActivity {
                 String strName = editName.getText().toString();
                 String strPassword = editPassword.getText().toString();
                 String strLocation = spinner.getSelectedItem().toString();
-                Intent intent = new Intent(FormActivity.this,ViewDataActivity.class);
-                intent.putExtra("name",strName);
-                intent.putExtra("password",strPassword);
-                intent.putExtra("location",strLocation);
-                startActivity(intent);
-                finish();
+
+                Intent intent = new Intent(FormActivity.this,ViewDataActivity.class); //creates instance of intent
+                intent.putExtra("name",strName);    //add data to intent
+                intent.putExtra("password",strPassword); // '
+                intent.putExtra("location",strLocation); // '
+                startActivity(intent); //start next activity
+                finish(); //ends the current activity
             }
         });
     }
 
     private void initData() {
+        //array adapter is used for managing data to the layout
         ArrayAdapter<String>arrayAdapter = new ArrayAdapter<String>(context,android.R.layout.simple_list_item_1,arrStrLocation );
         spinner.setAdapter(arrayAdapter);
     }
@@ -68,7 +71,7 @@ public class FormActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                finish();
+                finish(); //ends the current activity
                 return true;
         }
         return super.onOptionsItemSelected(item);
